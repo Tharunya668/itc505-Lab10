@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.post('/cs212/lab/7', (req, res) => {
-    function generateMadLib() {
+function generateMadLib() {
     // Get values from input fields
     const noun = document.getElementById('noun').value;
     const adjective = document.getElementById('adjective').value;
