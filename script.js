@@ -5,30 +5,26 @@ const app = express();
 const port = 8080;
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(express.static('public'));
 
 app.post('/cs212/lab/7', (req, res) => {
-function generateMadLib() {
-    // Get values from input fields
-    const noun = document.getElementById('noun').value;
-    const adjective = document.getElementById('adjective').value;
-    const verb = document.getElementById('verb').value;
-    const pluralNoun = document.getElementById('pluralNoun').value;
-    const color = document.getElementById('color').value;
-    const adverb = document.getElementById('adverb').value;
-    const bodyPart = document.getElementById('bodyPart').value;
-    const emotion = document.getElementById('emotion').value;
-    const animal = document.getElementById('animal').value;
-    const food = document.getElementById('food').value;
+    const noun = req.body.noun;
+    const adjective = req.body.adjective;
+    const verb = req.body.verb;
+    const pluralNoun = req.body.pluralNoun;
+    const color = req.body.color;
+    const adverb = req.body.adverb;
+    const bodyPart = req.body.bodyPart;
+    const emotion = req.body.emotion;
+    const animal = req.body.animal;
+    const food = req.body.food;
 
-    // Generate Mad Lib
     const madLib = `The ${adjective} ${noun} ${verb} over the ${color} ${pluralNoun}. They were ${adverb} ${emotion} when they saw a ${animal} with a ${bodyPart} eating ${food}.`;
 
-    // Open a new window and display the result
-    const newWindow = window.open('', '_blank');
-    newWindow.document.write('<html><head><title>Mad Lib Result</title></head><body>');
-    newWindow.document.write('<h1>Mad Lib Result</h1>');
-    newWindow.document.write(`<p>${madLib}</p>`);
-    newWindow.document.write('</body></html>');
-    newWindow.document.close();
+    // Send the madLib response back to the client
+    res.send(madLib);
+});
+
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
